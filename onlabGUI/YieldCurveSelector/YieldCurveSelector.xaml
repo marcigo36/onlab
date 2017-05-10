@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="onlabGUI.YieldCurveSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:onlabGUI"
+             xmlns:oxy="http://oxyplot.org/wpf"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="600">
+    <UserControl.DataContext>
+        <local:YieldCurveSelectorViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <!--upper pane-->
+        <TabControl x:Name="tabcontrol" TabStripPlacement="Right" Grid.Row="0" SelectionChanged="tabcontrol_SelectionChanged" >
+            <TabItem x:Name="qndlTab" Header="Quandl">
+                <local:QuandlYieldCurveLoader x:Name="ycLoader" PropertyChanged="ycSource_PropertyChanged"/>
+            </TabItem>
+            <TabItem x:Name="customTab" Header="Custom">
+                <local:YieldCurveEditor x:Name="ycEditor" PropertyChanged="ycSource_PropertyChanged"/>
+            </TabItem>
+        </TabControl>
+
+        <!--lower pane-->
+        <oxy:Plot Title="Discount Curve" LegendPlacement="Outside" Grid.Row="1">
+            <oxy:Plot.Axes>
+                <oxy:LinearAxis Position="Bottom" Minimum="0" Maximum="30"  Unit="Years"/>
+                <oxy:LinearAxis Position="Left" Minimum="0" Maximum="1" />
+            </oxy:Plot.Axes>
+            <oxy:Plot.Series>
+                <oxy:LineSeries ItemsSource="{Binding DiscountCurveAsOxyPlotCurve}"/>
+            </oxy:Plot.Series>
+        </oxy:Plot>
+    </Grid>
+</UserControl>

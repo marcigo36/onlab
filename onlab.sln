@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "onlab", "onlab\onlab.csproj", "{36BB2DE2-1F78-4A54-9863-5E61B179625F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuandlCS", "QuandlCS\QuandlCS.csproj", "{3839AEA2-4391-4D52-9811-E3FB8937EAFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "onlabGUI", "onlabGUI\onlabGUI.csproj", "{713CB42E-2FEA-4505-8D45-E35148DD9ED6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{36BB2DE2-1F78-4A54-9863-5E61B179625F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36BB2DE2-1F78-4A54-9863-5E61B179625F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36BB2DE2-1F78-4A54-9863-5E61B179625F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36BB2DE2-1F78-4A54-9863-5E61B179625F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3839AEA2-4391-4D52-9811-E3FB8937EAFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3839AEA2-4391-4D52-9811-E3FB8937EAFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3839AEA2-4391-4D52-9811-E3FB8937EAFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3839AEA2-4391-4D52-9811-E3FB8937EAFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{713CB42E-2FEA-4505-8D45-E35148DD9ED6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{713CB42E-2FEA-4505-8D45-E35148DD9ED6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{713CB42E-2FEA-4505-8D45-E35148DD9ED6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{713CB42E-2FEA-4505-8D45-E35148DD9ED6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

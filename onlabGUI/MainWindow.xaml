@@ -1,0 +1,75 @@
+﻿<Window x:Class="onlabGUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:onlabGUI"
+        xmlns:oxy="http://oxyplot.org/wpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="505.723" Width="657.289">
+    <Window.DataContext>
+        <local:MonteCarloViewModel/>
+    </Window.DataContext>
+    <!--<Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <oxy:Plot Title="{Binding Title}" LegendPlacement="Outside">
+            <oxy:Plot.Series>
+                <oxy:LineSeries Title="yield" ItemsSource="{Binding yield}"/>
+                <oxy:LineSeries Title="theta" ItemsSource="{Binding theta}"/>
+                <oxy:LineSeries Title="fwrate" ItemsSource="{Binding forwardrate}" Visibility="Visible"/>
+                <oxy:LineSeries Title="hw1" ItemsSource="{Binding hw1}" Visibility="Visible"/>
+                <oxy:LineSeries Title="hw2" ItemsSource="{Binding hw2}" Visibility="Visible"/>
+                <oxy:LineSeries Title="hw3" ItemsSource="{Binding hw3}" Visibility="Visible"/>
+
+            </oxy:Plot.Series>
+        </oxy:Plot>
+        <oxy:Plot Title="Discount Curve" LegendPlacement="Outside" Grid.Row="1">
+            <oxy:Plot.Series>
+                <oxy:LineSeries Title="discount factors" ItemsSource="{Binding disc}"/>
+                <oxy:LineSeries Title="zbp1" ItemsSource="{Binding zbp1}" Visibility="Visible"/>
+                <oxy:LineSeries Title="zbp2" ItemsSource="{Binding zbp2}" Visibility="Visible"/>
+                <oxy:LineSeries Title="zbp3" ItemsSource="{Binding zbp3}" Visibility="Visible"/>
+                <oxy:LineSeries Title="trsybondprice" ItemsSource="{Binding trsybondprice}" Visibility="Visible"/>
+            </oxy:Plot.Series>
+        </oxy:Plot>
+        <local:YieldCurveSelector Grid.Row="2" />
+
+
+
+
+
+
+    </Grid>-->
+    <TabControl >
+        <TabItem Header="Calibrated Hull-White Process">
+            <oxy:Plot Title="{Binding Title}" LegendPlacement="Outside">
+                <oxy:Plot.Series>
+                    <oxy:LineSeries Title="yield" ItemsSource="{Binding yield}"/>
+                    <oxy:LineSeries Title="theta" ItemsSource="{Binding theta}"/>
+                    <oxy:LineSeries Title="fwrate" ItemsSource="{Binding forwardrate}" Visibility="Visible"/>
+                    <oxy:LineSeries Title="hw1" ItemsSource="{Binding hw1}" Visibility="Visible"/>
+                    <oxy:LineSeries Title="hw2" ItemsSource="{Binding hw2}" Visibility="Visible"/>
+                    <oxy:LineSeries Title="hw3" ItemsSource="{Binding hw3}" Visibility="Visible"/>
+
+                </oxy:Plot.Series>
+            </oxy:Plot>
+        </TabItem>
+        <TabItem Header="Monte-Carlo Pricer">
+            <StackPanel>
+                <TextBlock Text="Bond Pricer" FontSize="18" FontWeight="Bold"/>
+                <local:BondInput />
+                <TextBlock Text="Bond Option Pricer" FontSize="18" FontWeight="Bold"/>
+                <local:BondInput />
+            </StackPanel>
+        </TabItem>
+        <TabItem Header="Yield Curve Source">
+            <local:YieldCurveSelector x:Name="ycSelector"/>
+        </TabItem>
+        
+    </TabControl>
+</Window>
