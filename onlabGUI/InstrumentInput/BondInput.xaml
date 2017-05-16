@@ -18,11 +18,11 @@
         <TextBox Margin="10,0,0,0" Text="{Binding Maturity}"/>
         <StackPanel Margin="10,0,0,0">
             <Label Content="Coupon Payments" FontSize="11"/>
-            <ComboBox FontSize="11" SelectionChanged="ComboBox_SelectionChanged">
+            <ComboBox x:Name="couponcombobox" FontSize="11" SelectionChanged="ComboBox_SelectionChanged">
                 <ComboBoxItem IsSelected="True">None</ComboBoxItem>
-                <ComboBoxItem>Quarterly</ComboBoxItem>
-                <ComboBoxItem>Semi-Annual</ComboBoxItem>
                 <ComboBoxItem>Annual</ComboBoxItem>
+                <ComboBoxItem>Semi-Annual</ComboBoxItem>
+                <ComboBoxItem>Quarterly</ComboBoxItem>
             </ComboBox>
             <Label Content="Yearly Coupon Rate" FontSize="11" />
             <TextBox Text="{Binding Rate}"/>

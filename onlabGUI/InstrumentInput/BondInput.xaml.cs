@@ -1,4 +1,5 @@
-﻿using System;
+﻿using onlab;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +28,9 @@ namespace onlabGUI
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var uu = this.DataContext;
+            var bond = this.DataContext as Bond;
+            //this is very ugly, it should be solved with binding and dataconverter..
+            bond.Coupon = (Bond.CouponPaymentType)couponcombobox.SelectedIndex;
         }
     }
 }

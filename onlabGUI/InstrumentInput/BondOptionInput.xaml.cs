@@ -1,4 +1,5 @@
-﻿using System;
+﻿using onlab;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,13 @@ namespace onlabGUI
         public BondOptionInput()
         {
             InitializeComponent();
+        }
+
+        private void typecombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var bo = this.DataContext as BondOption;
+            //this is very ugly, it should be solved with binding and dataconverter..
+            bo.OptionType = (BondOption.Type)typecombobox.SelectedIndex;
         }
     }
 }

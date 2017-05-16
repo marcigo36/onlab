@@ -11,5 +11,7 @@ namespace onlab
         double this[double t] { get; }
 
         IEnumerable<double> generatePath(double step, double maxt);
+
+        IEnumerable<double> generatePathFrom(double X0, double t0, double step, double maxt);
     }
 }

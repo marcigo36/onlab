@@ -11,7 +11,7 @@ namespace onlabGUI
 {
     public class YieldCurveSelectorViewModel: INotifyPropertyChanged
     {
-        public void UpdateCurve(DiscountCurve curve)
+        public void UpdateDiscountCurve(DiscountCurve curve)
         {
             this.DiscountCurveAsOxyPlotCurve = Utils.Plot(curve, 0.0, 30.0, 0.01).ToList();
             OnPropertyChanged("DiscountCurveAsOxyPlotCurve");

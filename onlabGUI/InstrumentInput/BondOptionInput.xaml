@@ -4,16 +4,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:onlabGUI"
+             xmlns:pricer="clr-namespace:onlab;assembly=onlab"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.DataContext>
+        <pricer:BondOption/>
+    </UserControl.DataContext>
     <StackPanel>
         <Label Content="Bond Option" FontSize="14" />
-        <Label Content="Strike Price" FontSize="11" Margin="10,0,0,0" />
-        <TextBox AutomationProperties.HelpText="usd" Margin="10,0,0,0" />
+        <Label Content="Strike Price" FontSize="11" Margin="10,0,0,0"/>
+        <TextBox Margin="10,0,0,0" Text="{Binding StrikePrice}"/>
         <Label Content="Execution Time" FontSize="11" Margin="10,0,0,0" />
-        <TextBox AutomationProperties.HelpText="usd" Margin="10,0,0,0" />
+        <TextBox Margin="10,0,0,0" Text="{Binding ExecutionTime}"/>
+        <Label Content="Option Type" FontSize="11"/>
+        <ComboBox x:Name="typecombobox" FontSize="11" SelectionChanged="typecombobox_SelectionChanged">
+            <ComboBoxItem IsSelected="True">Call</ComboBoxItem>
+            <ComboBoxItem>Put</ComboBoxItem>
+        </ComboBox>
         <Expander Header="Underlying Bond" Margin="10,0,0,0" FontSize="11">
-            <local:BondInput />
+            <local:BondInput DataContext="{Binding UnderlyingBond}"/>
         </Expander>
 
     </StackPanel>

@@ -1,6 +1,7 @@
 ﻿using onlab;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace onlabGUI
     /// <summary>
     /// Interaction logic for YieldCurveSelector.xaml
     /// </summary>
-    public partial class YieldCurveSelector : UserControl
+    public partial class YieldCurveSelector : UserControl, INotifyPropertyChanged
     {
         public YieldCurveSelector()
         {
@@ -37,16 +38,22 @@ namespace onlabGUI
         public YieldCurve Curve
         {
             get => yc;
+            private set
+            {
+                yc = value;
+                OnPropertyChanged("Curve");
+            }
         }
 
         private void UpdateCurve()
         {
+            //getting the attached yield curve from the active tab
             var source = ((TabItem)(tabcontrol.SelectedItem))?.GetValue(YieldCurveSelector.CurveSourceProperty);
 
             if(source == null)return;
 
-            yc = source as YieldCurve;
-            (DataContext as YieldCurveSelectorViewModel).UpdateCurve((DiscountCurve)yc);
+            Curve = source as YieldCurve;
+            (DataContext as YieldCurveSelectorViewModel).UpdateDiscountCurve((DiscountCurve)yc);
             //this is incredibly ugly.
             
         }
@@ -75,6 +82,16 @@ namespace onlabGUI
         private void tabcontrol_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(sender == tabcontrol) UpdateCurve();
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
         }
     }
 }

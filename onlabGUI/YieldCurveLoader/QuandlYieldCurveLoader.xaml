@@ -18,10 +18,10 @@
             <ColumnDefinition Width="150"/>
         </Grid.ColumnDefinitions>
         <!--yield curve plot-->
-        <oxy:Plot x:Name="graph" Title="Yield Curve" LegendPlacement="Outside">
+        <oxy:Plot x:Name="graph" Title="US Treasury Yield Curve" LegendPlacement="Outside">
             <oxy:Plot.Axes>
-                <oxy:LinearAxis Position="Bottom" Minimum="0" Maximum="30"  Unit="Years"/>
-                <oxy:LinearAxis Position="Left" Minimum="0" />
+                <oxy:LinearAxis Position="Bottom" Minimum="0" Maximum="30" Title="Maturity" Unit="Years"/>
+                <oxy:LinearAxis Position="Left" Minimum="0" Title="Rate"/>
             </oxy:Plot.Axes>
             <oxy:Plot.Series>
                 <oxy:LineSeries ItemsSource="{Binding YieldAsOxyPlotCurve}"/>

@@ -6,9 +6,18 @@ using System.Threading.Tasks;
 
 namespace onlab
 {
-    public struct BondOption
+    public class BondOption
     {
-        public enum Type { Put, Call };
+        public BondOption()
+        {
+            UnderlyingBond = new Bond();
+            StrikePrice = 0.7;
+            ExecutionTime = 10;
+            OptionType = Type.Call;
+        }
+        public enum Type { Call, Put };
+
+        public Type OptionType { get; set; }
 
         public Bond UnderlyingBond { set; get; }
 

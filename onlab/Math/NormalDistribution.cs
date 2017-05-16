@@ -15,7 +15,7 @@ namespace onlab
         }
 
         private double nu, sigma;
-        private static readonly Random rnd = new Random();
+        private static readonly Random rnd = new Random((int)System.DateTime.Now.Ticks);
 
         public double Nu { get => nu; }
         public double Sigma { get => sigma; }

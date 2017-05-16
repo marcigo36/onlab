@@ -8,68 +8,62 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="505.723" Width="657.289">
     <Window.DataContext>
-        <local:MonteCarloViewModel/>
+        <local:MainWindowViewModel/>
     </Window.DataContext>
-    <!--<Grid>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-            <RowDefinition Height="1*" />
-        </Grid.RowDefinitions>
-        <oxy:Plot Title="{Binding Title}" LegendPlacement="Outside">
-            <oxy:Plot.Series>
-                <oxy:LineSeries Title="yield" ItemsSource="{Binding yield}"/>
-                <oxy:LineSeries Title="theta" ItemsSource="{Binding theta}"/>
-                <oxy:LineSeries Title="fwrate" ItemsSource="{Binding forwardrate}" Visibility="Visible"/>
-                <oxy:LineSeries Title="hw1" ItemsSource="{Binding hw1}" Visibility="Visible"/>
-                <oxy:LineSeries Title="hw2" ItemsSource="{Binding hw2}" Visibility="Visible"/>
-                <oxy:LineSeries Title="hw3" ItemsSource="{Binding hw3}" Visibility="Visible"/>
-
-            </oxy:Plot.Series>
-        </oxy:Plot>
-        <oxy:Plot Title="Discount Curve" LegendPlacement="Outside" Grid.Row="1">
-            <oxy:Plot.Series>
-                <oxy:LineSeries Title="discount factors" ItemsSource="{Binding disc}"/>
-                <oxy:LineSeries Title="zbp1" ItemsSource="{Binding zbp1}" Visibility="Visible"/>
-                <oxy:LineSeries Title="zbp2" ItemsSource="{Binding zbp2}" Visibility="Visible"/>
-                <oxy:LineSeries Title="zbp3" ItemsSource="{Binding zbp3}" Visibility="Visible"/>
-                <oxy:LineSeries Title="trsybondprice" ItemsSource="{Binding trsybondprice}" Visibility="Visible"/>
-            </oxy:Plot.Series>
-        </oxy:Plot>
-        <local:YieldCurveSelector Grid.Row="2" />
-
-
-
-
-
-
-    </Grid>-->
     <TabControl >
         <TabItem Header="Calibrated Hull-White Process">
-            <oxy:Plot Title="{Binding Title}" LegendPlacement="Outside">
-                <oxy:Plot.Series>
-                    <oxy:LineSeries Title="yield" ItemsSource="{Binding yield}"/>
-                    <oxy:LineSeries Title="theta" ItemsSource="{Binding theta}"/>
-                    <oxy:LineSeries Title="fwrate" ItemsSource="{Binding forwardrate}" Visibility="Visible"/>
-                    <oxy:LineSeries Title="hw1" ItemsSource="{Binding hw1}" Visibility="Visible"/>
-                    <oxy:LineSeries Title="hw2" ItemsSource="{Binding hw2}" Visibility="Visible"/>
-                    <oxy:LineSeries Title="hw3" ItemsSource="{Binding hw3}" Visibility="Visible"/>
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
 
-                </oxy:Plot.Series>
-            </oxy:Plot>
+                <oxy:Plot Title="Calibrated Hull-White model" LegendPlacement="Outside">
+                    <oxy:Plot.Axes>
+                        <oxy:LinearAxis Position="Bottom" Minimum="0" Maximum="30"  Unit="Years"/>
+                        <oxy:LinearAxis Position="Left" Minimum="0" />
+                    </oxy:Plot.Axes>
+                    <oxy:Plot.Series>
+                        <oxy:LineSeries Title="hw1" ItemsSource="{Binding HW1Points}" Color="Orange"/>
+                        <oxy:LineSeries Title="hw2" ItemsSource="{Binding HW2Points}" Color="Orange"/>
+                        <oxy:LineSeries Title="hw3" ItemsSource="{Binding HW3Points}" Color="Orange"/>
+                        <oxy:LineSeries Title="yield" ItemsSource="{Binding YieldCurvePoints}" Color="Green"/>
+                        <oxy:LineSeries Title="theta" ItemsSource="{Binding ThetaPoints}" Color="Red"/>
+                        <oxy:LineSeries Title="fwrate" ItemsSource="{Binding ForwardRatePoints}" Color="Blue" />
+
+                    </oxy:Plot.Series>
+                </oxy:Plot>
+                <Button Grid.Row="1" Width="200" Click="Button_Click">Recalibrate</Button>
+            </Grid>
+
         </TabItem>
         <TabItem Header="Monte-Carlo Pricer">
-            <StackPanel>
-                <TextBlock Text="Bond Pricer" FontSize="18" FontWeight="Bold"/>
-                <local:BondInput />
-                <TextBlock Text="Bond Option Pricer" FontSize="18" FontWeight="Bold"/>
-                <local:BondInput />
-            </StackPanel>
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Text="Bond Pricer" FontSize="18" FontWeight="Bold"/>
+                    <local:BondInput x:Name="bondinput"/>
+                    <TextBlock Text="Price:" FontSize="14"/>
+                    <TextBlock Text="{Binding BondPrice}" FontSize="14"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Bond Option Pricer" FontSize="18" FontWeight="Bold"/>
+                    <local:BondOptionInput x:Name="bondoptioninput"/>
+                    <TextBlock Text="Price:" FontSize="14"/>
+                    <TextBlock Text="{Binding BondOptionPrice}" FontSize="14"/>
+                </StackPanel>
+
+                <Button x:Name="pricebtn" Grid.Column="2" Height="30" Click="pricebtn_Click">Price!</Button>
+            </Grid>
         </TabItem>
         <TabItem Header="Yield Curve Source">
-            <local:YieldCurveSelector x:Name="ycSelector"/>
+            <local:YieldCurveSelector x:Name="ycSelector" PropertyChanged="ycSelector_PropertyChanged" />
         </TabItem>
-        
+
     </TabControl>
 </Window>

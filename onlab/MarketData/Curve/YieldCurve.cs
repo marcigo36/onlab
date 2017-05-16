@@ -14,5 +14,8 @@ namespace onlab
         {
             return new DiscountCurve( _this.Transform( p => 1.0 / (1.0 + p.x*p.y ) ) );
         }
+
+        //plottable, for debug
+        public double F(double x) { return this[x]; }
     }
 }

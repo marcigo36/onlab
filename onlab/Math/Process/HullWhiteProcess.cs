@@ -30,8 +30,13 @@ namespace onlab
 
         public IEnumerable<double> generatePath(double step, double maxt)
         {
-            double t = 0;
-            double X = theta(0);
+            return generatePathFrom(0,0, step, maxt);
+        }
+
+        public IEnumerable<double> generatePathFrom(double X0,double t0, double step, double maxt)
+        {
+            double t = t0;
+            double X = X0;
 
             for (; t < maxt; t += step)
             {
@@ -40,8 +45,8 @@ namespace onlab
                 //step by step solution to the HW formula
                 var th = theta(t);
                 var dr = (theta(t) - a * X) * step;
-                X += (theta(t) - a*X)*step + NormalDistribution.GetValue(0.0, sigma * step);
+                X += (theta(t) - a * X) * step + NormalDistribution.GetValue(0.0, sigma * step);
             }
-        } 
+        }
     }   
 }

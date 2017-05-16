@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="INotify, Version=19.4.15.1208, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\INotify.Wpf.19.4.15.1208\lib\net40-Client\INotify.dll</HintPath>
+    </Reference>
     <Reference Include="OxyPlot, Version=1.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
       <HintPath>..\packages\OxyPlot.Core.1.0.0\lib\net45\OxyPlot.dll</HintPath>
     </Reference>
@@ -68,6 +71,7 @@
     <Compile Include="InstrumentInput\BondInput.xaml.cs">
       <DependentUpon>BondInput.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="YieldCurveLoader\QuandlYieldCurveLoaderViewModel.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="YieldCurveLoader\QuandlYieldCurveLoader.xaml.cs">
@@ -121,7 +125,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MonteCarloViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
